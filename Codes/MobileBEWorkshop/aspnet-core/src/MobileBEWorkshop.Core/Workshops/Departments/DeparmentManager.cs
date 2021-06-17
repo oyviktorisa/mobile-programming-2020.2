@@ -32,14 +32,14 @@ namespace MobileBEWorkshop.Workshops.Departments
             });
         }
 
-        public Task<List<Department>> GetAllDepartmentsAsync()
+        public async Task<List<Department>> GetAllDepartmentsAsync()
         {
-            throw new NotImplementedException();
+            return await departmentRepository.GetAllListAsync(x => !x.isDeleted);
         }
 
-        public Task<Department> GetDepartmentAsync(Guid id)
+        public async Task<Department> GetDepartmentAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await departmentRepository.GetAsync(id);
         }
 
         public Task UpdateDepartmentAsync(Department broadcast)

@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.UI;
 using MobileBEWorkshop.Departments.DTO;
 using MobileBEWorkshop.Workshops.Departments;
+using Nito.AsyncEx;
 
 namespace MobileBEWorkshop.Departments
 {
@@ -27,6 +30,18 @@ namespace MobileBEWorkshop.Departments
             });
 
             return dto;
+        }
+
+        public async Task<List<DepartmentDTO>> GetAll()
+        {
+            var result = await departmentManager.GetAllDepartmentsAsync(); 
+
+            return result.Select(x => new DepartmentDTO
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Code = x.Code
+            }).ToList();
         }
 
         public async Task<DepartmentDTO> GetById(Guid id)

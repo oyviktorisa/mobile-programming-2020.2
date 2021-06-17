@@ -20,11 +20,13 @@ namespace Employee.DataAccess.EntityFramework
         }
 
         public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<Test> Test { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=localhost;uid=root;pwd=password;database=MobileBEWorkshop.Employee", x => x.ServerVersion("10.5.10-mariadb"));
             }
         }
@@ -62,6 +64,23 @@ namespace Employee.DataAccess.EntityFramework
                     .HasCollation("latin1_swedish_ci");
 
                 entity.Property(e => e.Name)
+                    .HasColumnType("varchar(100)")
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
+            });
+
+            modelBuilder.Entity<Test>(entity =>
+            {
+                entity.ToTable("test");
+
+                entity.Property(e => e.TestId)
+                    .HasColumnName("testId")
+                    .HasColumnType("varchar(36)")
+                    .HasCharSet("latin1")
+                    .HasCollation("latin1_swedish_ci");
+
+                entity.Property(e => e.TestName)
+                    .HasColumnName("testName")
                     .HasColumnType("varchar(100)")
                     .HasCharSet("latin1")
                     .HasCollation("latin1_swedish_ci");

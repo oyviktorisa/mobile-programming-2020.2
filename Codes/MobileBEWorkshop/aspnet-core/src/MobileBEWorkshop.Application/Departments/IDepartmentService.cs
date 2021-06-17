@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Dependency;
@@ -11,5 +12,7 @@ namespace MobileBEWorkshop.Departments
         public Task<DepartmentDTO> CreateDepartment(DepartmentDTO dto);
 
         public Task<DepartmentDTO> GetById(Guid id);
+
+        public Task<List<DepartmentDTO>> GetAll();
     }
 }

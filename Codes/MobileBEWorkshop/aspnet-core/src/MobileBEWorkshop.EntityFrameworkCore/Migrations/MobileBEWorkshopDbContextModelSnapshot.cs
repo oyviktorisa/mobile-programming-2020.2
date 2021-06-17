@@ -1543,6 +1543,35 @@ namespace MobileBEWorkshop.Migrations
                     b.ToTable("AbpTenants");
                 });
 
+            modelBuilder.Entity("MobileBEWorkshop.Workshops.Assignments.Assignment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Workshop_Assignments");
+                });
+
             modelBuilder.Entity("MobileBEWorkshop.Workshops.Departments.Department", b =>
                 {
                     b.Property<Guid>("Id")
